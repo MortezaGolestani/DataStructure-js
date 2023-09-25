@@ -1,0 +1,32 @@
+.array 
+{
+  height:400px;
+  width: auto;
+  border: solid 2px rgb(123, 105, 93);  
+  display: block;
+  overflow-y: scroll;
+  padding: 5px;
+   word-wrap: break-word;
+  overflow-x: hidden;
+
+}
+.numbers{
+  border:rgb(73, 165, 111) 2px solid ;
+  padding: 5px;
+  margin-bottom: 10px;
+  
+}
+.numbers:hover{
+  border:rgb(10, 170, 233) 2px solid;
+
+}
+.numbers:active{
+
+  border:rgb(236, 24, 155) 2px solid;
+}
+.numbers:focus{
+  border:rgb(220, 235, 11) 2px solid;
+}
+.numbers:required{
+  border:rgb(140, 76, 23) 2px solid;
+}

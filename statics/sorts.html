@@ -1,13 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/css/dsa.css" rel="stylesheet" />
-  <script type="javascripts" src="/javascipts/sorts.js"
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/dsa.css" rel="stylesheet" />
+    <script type="text/javascript" src="./../javascipts/sorts.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>
+      Create an unsorted Array of Number and Retrun sorted array based on
+      <em>INSERT SORT</em> algorithm
+    </h2>
+    <p>
+      based on our input create an unsorted array with random number between Min
+      and Max with length equal Number Elemnet
+    </p>
+    
+      <div id="datainput">
+        <input
+          id="num"
+          class="numbers"
+          type="text"
+          placeholder="Number of Array Element"
+          min="2"
+          max="100000000"
+        />
+        <input
+          id="minval"
+          type="text"
+          class="numbers"
+          placeholder="Min value of random Numbers"
+          min="-1000000000000"
+        />
+        <input
+          id="maxval"
+          class="numbers"
+          type="text"
+          placeholder="Max value of random Numbers"
+          max="1000000000000"
+        />
+
+        <button type="button" onclick="startWorker()">Create and Sort</button>
+      </div>
+    <div id="unsrtedArrayContainer">
+      <div id="unsortedarray" class="array"></div>
+    </div>
+    <div>
+      <h1>number of item sorted until now:</h1>
+      <p id="numitemssorted"></p>
+      <h1>Times elapsed in second:</h1>
+      <p id="times"></p>
+      <div
+        onchange="stopWorker()"
+        name="sortedArray"
+        class="array"
+        id="sortedarray"
+      ></div>
+    </div>
+    <script>
+      let worker;
+      function startWorker() {
+        if (typeof worker == "undefined") {
+          let xarray = onClickedButton();
+          worker = new Worker("./../javascipts/sortdsa.js");
+          worker.onmessage = function (event) {
+            document.getElementById("sortedarray").innerText =
+              event.data.join(", ");
+            killTimer1();
+          };
+          worker.postMessage(xarray);
+          timer1();
+        }
+      }
+      function stopWorker() {
+        console.log("stopWorker called");
+        worker.terminate();
+        worker = undefined;
+      }
+    </script>
+  </body>
 </html>
